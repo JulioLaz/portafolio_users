@@ -10,7 +10,11 @@ import Swal from 'sweetalert2';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent implements OnInit {
+
+
 isLogged=false;
 isLoginFail=false;
 loginUsuario!:LoginUsuario;
@@ -20,6 +24,8 @@ roles: string[]=[];
 errMsj!:string;
 spinerBtn:boolean=true;
 login:any;
+
+
 
   constructor(
     private tokenService: TokenService,

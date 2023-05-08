@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cursos } from 'src/app/model/cursos';
 import { Educacion } from 'src/app/model/educacion';
@@ -30,12 +30,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./new-usuario.component.css']
 })
 export class NewUsuarioComponent implements OnInit {
+
+  loader = false;
+
   nombre: string;
   nameUsuario: string;
   email: string;
   password: string;
   authorities: string;
   spinerBtn: boolean = true;
+
   roles: Roles[] = [];
   id: number = null;
   rol: string[] = [];
@@ -132,6 +136,12 @@ export class NewUsuarioComponent implements OnInit {
     this.authService.nuevoUser(usuario).subscribe(
       {
         next: () => {
+          this.onLogin(this.nameUsuario,this.password);
+          console.info('complete user '+usuario),
+          this.cargarIdXNombre(this.nombre);
+          // this.router.navigate(['']);
+          // setTimeout(() => {location.reload()}, 1000)
+
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -152,11 +162,11 @@ export class NewUsuarioComponent implements OnInit {
             this.spinerBtn = true;
           },
           complete: () => {
-            this.onLogin(this.nameUsuario,this.password);
-            console.info('complete user '+usuario),
-            this.cargarIdXNombre(this.nombre);
-            this.router.navigate(['']);
-            setTimeout(() => {location.reload()}, 1000)
+            // this.onLogin(this.nameUsuario,this.password);
+            // console.info('complete user '+usuario),
+            // this.cargarIdXNombre(this.nombre);
+            // this.router.navigate(['']);
+            // setTimeout(() => {location.reload()}, 1000)
           }
         })
   }
@@ -224,7 +234,7 @@ export class NewUsuarioComponent implements OnInit {
     this.sCursos.save(cur).subscribe({
       next: () => { console.log("Curso añadido correctamente") },
       error: () => { console.log("falló al crear Curso") },
-      complete: () => console.info('complete proyecto')
+      complete: () => {console.info('complete proyecto')}
     })
   }
 
@@ -234,7 +244,7 @@ export class NewUsuarioComponent implements OnInit {
     console.log("Persona: " + JSON.stringify(persona));
     this.personaService.save(persona).subscribe(
       {
-        next: () => { console.log("PERSONA añadida correctamente") },
+        next: () => { console.log("PERSONA añadida correctamente")},
         error: () => { alert("falló añadir nueva persona"), this.router.navigate(['']) },
         complete: () => console.info('complete')
       })
@@ -268,6 +278,8 @@ export class NewUsuarioComponent implements OnInit {
         this.onCreateIdiomas();
         this.onCreateProyecto();
         this.onCreateCurso();
+        // this.router.navigate(['']);
+        setTimeout(() => {location.reload()}, 8000)
       })
   }
 

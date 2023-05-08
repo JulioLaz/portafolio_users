@@ -19,6 +19,9 @@
       </ul>
     </div>
 
+    <!-- SPINER -->
+    <div class="lds-spinner" *ngIf="isLogged"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
 <!-- nombre del usuario logeado -->
     <div class="encabezado_nombre" style="display: flex; align-items: center;height: auto" *ngIf="isLogged">
       <span class="text-white ms-5 fs-3 " style="margin-left:0rem !important;">{{persona.nombre}} {{persona.apellido}}

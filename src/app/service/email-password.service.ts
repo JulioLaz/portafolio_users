@@ -9,7 +9,8 @@ import { EmailValuesDTO } from '../model/email-values-dto';
   providedIn: 'root'
 })
 export class EmailPasswordService {
-  changePasswordURL = environment.changePasswordURL;
+
+  changePasswordURL = environment.URL + 'email';;
 
   constructor(private httpClient: HttpClient) { }
 

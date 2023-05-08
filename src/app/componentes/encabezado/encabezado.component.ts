@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { Persona } from 'src/app/model/persona.model';
@@ -12,6 +12,8 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./encabezado.component.css']
 })
 export class EncabezadoComponent implements OnInit {
+
+  loader:boolean;
 
   persona: Persona = new Persona(null, "", "", "", "", "", "", "", "");
   personas: Persona[] = [];
@@ -33,9 +35,6 @@ export class EncabezadoComponent implements OnInit {
 
   imagen_user: string = '/assets/julio.png';
 
-  // img_base64_send_pdf:any=this.getBase64ImageFromURL(this.persona.img);
-  // img_base64_send_pdf:any=this.getBase64ImageFromURL(this.persona.img);
-
   constructor(
     private router: Router,
     private tokenservice: TokenService,
@@ -56,33 +55,7 @@ export class EncabezadoComponent implements OnInit {
     } else {
       this.isLogged = false
     }
-    // console.log("username: "+this.tokenservice.getUserName())
   }
-  // getBase64ImageFromURL(url: string) {
-  //   return new Promise((resolve, reject) => {
-  //     var img = new Image();
-  //     // img.setAttribute("crossOrigin", "anonymous");
-  //     img.setAttribute("crossOrigin",'use-credentials');
-
-  //     img.onload = () => {
-  //       var canvas = document.createElement("canvas");
-  //       canvas.width = img.width;
-  //       canvas.height = img.height;
-
-  //       var ctx = canvas.getContext("2d");
-  //       ctx.drawImage(img, 0, 0);
-
-  //       var dataURL = canvas.toDataURL("image/png");
-
-  //       resolve(dataURL);
-  //     };
-  //     img.onerror = error => {
-  //       reject(error);
-  //     };
-  //     img.src = url;
-  //   });
-  // }
-
 
   habilitarDelUser(userId: number) {
     if (userId == 1) {
@@ -97,35 +70,42 @@ export class EncabezadoComponent implements OnInit {
     this.authService.lista().subscribe(
       data => {
         this.nuevoUsuario = data;
+        if(!this.tokenservice.getToken()) {
+          console.log("Persona: 1");
+          return  this.userId=1,this.cargarPersona(1)
+        }
         this.nuevoUsuario.forEach(nuevo => {
+
           if (nuevo.nombreUsuario == this.tokenservice.getUserName()) {
             console.log(" desde if: " + nuevo.nombreUsuario + " -  id: " + nuevo.id);
             this.userId = nuevo.id;
             this.nombre = nuevo.nombre;
             this.habilitarDelUser(this.userId);
             this.cargarPersona(this.userId);
-            return
-          } if (this.verSeleccion) {
+            // return
+          }else if (this.verSeleccion) {
             this.cargarPersona(this.verSeleccion);
             console.log("Persona: " + this.verSeleccion);
 
-          } if (!this.tokenservice.getToken()) {
-            this.userId=1;
-            this.cargarPersona(1);
-            console.log("Persona: 1");
-
           }
-
+          // else if(!this.tokenservice.getToken()) {
+          //   this.userId=1;
+          //   this.cargarPersona(1);
+          //   console.log("Persona: 1");
+          // }
         })
       })
-  }
+    }
+
 
   cargarPersona(id: number): void {
     this.personaService.detail(id).subscribe((data) => {
       this.persona = data;
+      return;
     });
 
     this.cargarEmail(id);
+    return;
     // console.log("Persona: " + JSON.stringify(this.persona))
 
   }
@@ -133,7 +113,7 @@ export class EncabezadoComponent implements OnInit {
   cargarPersonas(): void {
     this.personaService.lista().subscribe((data) => {
       this.personas = data;
-      // console.log("Persona: " + JSON.stringify(this.personas))
+      console.log("Persona: " + JSON.stringify(this.personas))
     })
   }
 
@@ -161,14 +141,10 @@ export class EncabezadoComponent implements OnInit {
     this.router.navigateByUrl('/modal');
   }
 
-
-
   btnSubmit() {
     ('loading');
     setTimeout(function () {
-      ('reset');
-    }, 8000);
-
+      ('reset')}, 8000);
   }
 
   onValue_new(id: any, nombre: string, apellido: string) {
@@ -188,22 +164,26 @@ export class EncabezadoComponent implements OnInit {
       this.correo_up=true;
       this.redes_up=false
     }
-
   }
 
-  cargarEmail(id: string | number): void {
-    this.authService.lista().subscribe(
+  cargarEmail(id: number): void {
+    // this.authService.lista().subscribe(
+    this.authService.getIdUsuario(id).subscribe(
       data => {
         data
-        this.email = (JSON.stringify(data));
-        const objetoJSON_00 = JSON.parse(JSON.stringify(data));
-        for (let i = 0; i < objetoJSON_00.length; i++) {
-          const objetoJSON_new = JSON.parse(JSON.stringify(data[i]));
-          if (objetoJSON_new.id == id) {
-            console.log("desde if email: " + objetoJSON_new.email);
-            this.correo = objetoJSON_new.email
-          }
-        }
+        // this.email = (JSON.stringify(data));
+        this.correo = (JSON.parse(JSON.stringify(data))).email;
+        // const objetoJSON_00 = (JSON.parse(JSON.stringify(data))).email;
+        // this.correo = objetoJSON_00.email;
+            console.log("desde cargarEmail: " + this.correo);
+
+        // for (let i = 0; i < objetoJSON_00.length; i++) {
+        //   const objetoJSON_new = JSON.parse(JSON.stringify(data[i]));
+        //   if (objetoJSON_new.id == id) {
+        //     this.correo = objetoJSON_new.email;
+        //     console.log("desde cargarEmail: " + objetoJSON_new.email);
+        //   }
+        // }
       }
     )
   }

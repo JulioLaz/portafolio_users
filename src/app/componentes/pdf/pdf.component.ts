@@ -28,7 +28,6 @@ import { ImgService } from 'src/app/service/img.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import * as $ from 'jquery';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -156,7 +155,7 @@ export class PdfComponent implements OnInit {
         for (let i = 0; i < objetoJSON_00.length; i++) {
           const objetoJSON_new = JSON.parse(JSON.stringify(data[i]));
           if (objetoJSON_new.id == id) {
-            console.log("desde if email: " + objetoJSON_new.email);
+            console.log("desde cargarEmail: " + objetoJSON_new.email);
             this.correo = objetoJSON_new.email
           }
         }
@@ -169,43 +168,48 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.cursos = JSON.parse(JSON.stringify(data));
+        console.log('PDF: Cargar Cursos'+JSON.stringify(data))
       })
-  }
+    }
 
-  cargarProyectos(usuarioId: number): void {
-    this.sProyectos.findAllUsuarioId(usuarioId).subscribe(
-      data => {
-        data
-        this.proyectos = JSON.parse(JSON.stringify(data));
-      })
-  }
-
-  cargarHardsSkills(usuarioId: number): void {
-    this.sHardSSkillsService.findAllUsuarioId(usuarioId).subscribe(
-      data => {
-        data
-        this.hardsskills = JSON.parse(JSON.stringify(data));
-      })
-  }
-
-  cargarIdioma(usuarioId: number): void {
-    this.sIdiomasService.findAllUsuarioId(usuarioId).subscribe(
-      data => {
-        data
-        this.idioma = JSON.parse(JSON.stringify(data));
-      })
-  }
-
-  cargarPersona(id: number): void {
-    this.personaService.detail(id).subscribe((data) => {
-      this.personas = data;
-      this.img = (JSON.stringify(this.personas.img));
-      if ((JSON.stringify(this.personas.img)).length < 3) {
-        this.img = "../../../assets/julio.png";
-        this.imgExist = false;
-      } else {
-        this.img_foto = this.personas.img;
+    cargarProyectos(usuarioId: number): void {
+      this.sProyectos.findAllUsuarioId(usuarioId).subscribe(
+        data => {
+          data
+          this.proyectos = JSON.parse(JSON.stringify(data));
+          console.log('PDF: Cargar proyectos'+JSON.stringify(data))
+        })
       }
+
+      cargarHardsSkills(usuarioId: number): void {
+        this.sHardSSkillsService.findAllUsuarioId(usuarioId).subscribe(
+          data => {
+            data
+            this.hardsskills = JSON.parse(JSON.stringify(data));
+            console.log('PDF: Cargar hardsskills'+JSON.stringify(data))
+          })
+        }
+
+        cargarIdioma(usuarioId: number): void {
+          this.sIdiomasService.findAllUsuarioId(usuarioId).subscribe(
+            data => {
+              data
+              this.idioma = JSON.parse(JSON.stringify(data));
+              console.log('PDF: Cargar idioma'+JSON.stringify(data))
+            })
+          }
+
+          cargarPersona(id: number): void {
+            this.personaService.detail(id).subscribe((data) => {
+              this.personas = data;
+              this.img = (JSON.stringify(this.personas.img));
+              if ((JSON.stringify(this.personas.img)).length < 3) {
+                this.img = "../../../assets/julio.png";
+                this.imgExist = false;
+              } else {
+                this.img_foto = this.personas.img;
+              }
+              console.log('PDF: Cargar personas'+this.personas)
     })
   }
 
@@ -214,15 +218,16 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.educacion = JSON.parse(JSON.stringify(data));
-        console.log(this.educacion)
+        console.log('PDF: Cargar educacion'+ JSON.stringify(data))
       })
-  };
+    };
 
-  cargarExperiencia(usuarioId: number): void {
-    this.sExperienciaService.findAllUsuarioId(usuarioId).subscribe(
-      data => {
-        data
-        this.expe = JSON.parse(JSON.stringify(data));
+    cargarExperiencia(usuarioId: number): void {
+      this.sExperienciaService.findAllUsuarioId(usuarioId).subscribe(
+        data => {
+          data
+          this.expe = JSON.parse(JSON.stringify(data));
+          console.log('PDF: Cargar experiencia'+ JSON.stringify(data))
       })
   }
 
