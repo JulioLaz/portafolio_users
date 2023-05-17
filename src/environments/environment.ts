@@ -14,8 +14,8 @@ export const environment = {
   },
 
   production: false,
+  // URL:'https://curriculumvitae-qw3u.onrender.com/'
   URL: 'http://localhost:8080/',
-  // changePasswordURL: 'http://localhost:8080/email',
 };
 
 /*
