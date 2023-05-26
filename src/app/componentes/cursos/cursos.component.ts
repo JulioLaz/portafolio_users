@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Cursos } from 'src/app/model/cursos';
 import { Frases } from 'src/app/model/frases';
 import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
-import { Proyectos } from 'src/app/model/proyectos';
 import { AuthService } from 'src/app/service/auth.service';
 import { EnvioUsuarioIdService } from 'src/app/service/envio-usuario-id.service';
 import { SCursosService } from 'src/app/service/s-cursos.service';
@@ -46,7 +45,6 @@ export class CursosComponent implements OnInit {
     this.cargarUsuarioId();
     this.envioUsuarioIdService.cargadorUsuarioId.subscribe(
       data=>{
-        // this.cargarProyectos(data.data);
         this.cargarFraseUsuarioId(data.data);
         this.cargarCursos(data.data);
       }
@@ -64,6 +62,7 @@ export class CursosComponent implements OnInit {
       data => {
         data
         this.cursos = JSON.parse(JSON.stringify(data));    //ver
+        console.log('Cursos: ',this.cursos)
       })
   }
 
@@ -90,12 +89,10 @@ export class CursosComponent implements OnInit {
           if (nuevo.nombreUsuario == this.tokenService.getUserName()) {
             this.usuarioId = nuevo.id;
             this.cargarCursos(this.usuarioId);               ///ver
-            // this.cargarProyectos(this.usuarioId);               ///ver
             this.cargarFraseUsuarioId(this.usuarioId);
           }
         })
         if (this.tokenService.getUserName() == undefined) {
-          // this.cargarProyectos(1);                              ///ver
           this.cargarCursos(1);                              ///ver
           this.cargarFraseUsuarioId(1);
         }

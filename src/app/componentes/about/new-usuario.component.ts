@@ -89,7 +89,7 @@ export class NewUsuarioComponent implements OnInit {
   imgURLHSS: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/375px-CSS3_logo_and_wordmark.svg.png";
 
   //IDIOMAS
-  nombreIdioma: string = "Ingles";
+  nombreIdioma: string = "Ingles: nivel B1";
   porcentajeIdioma: string = "90%";
   imgURLIdioma: string = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/375px-CSS3_logo_and_wordmark.svg.png";
 

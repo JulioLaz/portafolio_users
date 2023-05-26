@@ -45,7 +45,7 @@ import { CursosComponent } from './componentes/cursos/cursos.component';
 import { NewCursoComponent } from './componentes/cursos/new-curso.component';
 import { EditCursoComponent } from './componentes/cursos/edit-curso.component';
 import { PdfComponent } from './componentes/pdf/pdf.component';
-import { ModalInicioComponent } from './componentes/modal-inicio/modal-inicio.component';
+import { ModalInicioComponent } from './componentes/ayuda/modal-inicio.component';
 // import { ColorPickerModule  } from 'ngx-color-picker';
 // import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @NgModule({
@@ -95,7 +95,7 @@ import { ModalInicioComponent } from './componentes/modal-inicio/modal-inicio.co
     BrowserAnimationsModule,
     MatButtonModule,
     MatMenuModule,
-    
+
     // ColorPickerModule,
     // NgxColorPickerModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

@@ -47,36 +47,6 @@ nav{
   margin-top: 1rem;
 }
 
-@media screen and (min-width:850px){
-      .navBarMy{
-        align-items: center;
-        border-bottom:2px solid grey;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-        }
-        .imgArgProg{
-          max-width: 320px;
-          margin: .5rem .5rem;
-        }
-        .encabezado_nombre{
-          margin: 1rem 2rem;
-        }
-}
-.yoProg{
-  font-size: 2rem;
-}
-.centrar{
-  display: flex;
-  justify-content: center;
-}
-#cajaRedesLogin{
-display: flex;
-justify-content: end;
-margin:1rem;align-items: center;
-/* flex-direction: column; */
-}
 
 .red:hover svg path,
 .red:hover svg polyline,
@@ -85,15 +55,18 @@ margin:1rem;align-items: center;
 }
 
 /* SPINER */
+
 .lds-spinner {
   color: official;
-  display: inline-block;
+  /* display: inline-block; */
   position: absolute;
-  top: 30vh;
-  left: 45vw;
-  width: 80px;
-  height: 80px;
+  /* top: 1rem; */
+  left: 42%;
+  text-align: center;
 }
+
+
+
 .lds-spinner div {
   transform-origin: 40px 40px;
   animation: lds-spinner 1.2s linear infinite;
@@ -164,4 +137,122 @@ margin:1rem;align-items: center;
   100% {
     opacity: 0;
   }
+}
+@keyframes lds-spinne {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulso{
+  0%{
+    color:grey;
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1);
+    color:rgb(48, 47, 47);
+  }
+  100%{
+    transform: scale(1);
+    color:rgb(172, 171, 171);
+  }
+}
+.pulso{
+  font-size: 1.5rem;
+  animation: pulso 2s linear infinite;
+}
+
+.box_cargando{
+  display: inline-block;
+  position: absolute;
+  justify-content: center;
+  top: 30vh;
+  width: 80vw;
+  border: 1px solid grey;
+  border-radius: 10px;
+  background-color: rgba(10, 10, 10, .8);
+  height: auto;
+}
+.inbox{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: calc(13px + 1vw);
+}
+
+@media screen and (min-width:850px){
+      .navBarMy{
+        align-items: center;
+        border-bottom:2px solid grey;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        }
+        .imgArgProg{
+          max-width: 320px;
+          margin: .5rem .5rem;
+        }
+        .encabezado_nombre{
+          margin: 1rem 2rem;
+        }
+        .box_cargando{
+          display: inline-block;
+          position: absolute;
+          justify-content: center;
+          top: 30vh;
+          left: 25vw;
+          width: 50vw;
+          border: 1px solid grey;
+          border-radius: 10px;
+          background-color: rgba(10, 10, 10, .8);
+          height: auto;
+         }
+         .inbox{
+          text-align: center;
+          margin-top: 1rem;
+        }
+}
+.yoProg{
+  font-size: 2rem;
+}
+.centrar{
+  display: flex;
+  justify-content: center;
+}
+#cajaRedesLogin{
+display: flex;
+justify-content: end;
+margin:1rem;align-items: center;
+}
+
+.progress-bar {
+  display: flex;
+  height: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(160, 200, 218, 0.3);
+  /* background-color: #f0f0f0; */
+  border-radius: 5px;
+}
+
+.progress {
+  justify-content: flex-end;
+  height: 100%;
+  background-color:rgba(37, 142, 168, 0.7);
+  /* background-color: #5998e0; */
+  color: #fff;
+  line-height: 20px;
+  padding-right: 5px;
+}
+
+.box_all{
+  display: inline-block;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(160, 200, 218, 0.3);
+  z-index: 1000;
 }

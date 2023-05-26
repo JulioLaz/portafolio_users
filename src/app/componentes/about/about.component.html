@@ -1,7 +1,7 @@
 <div class="container-fluid cajaAbout" id="about">
 
   <!-- FOTO + NOMBRE  -->
-  <div class=" col-md-3 col-lg-3 text-center">
+  <div class=" col-md-3 col-lg-3 text-center" style="font-family: sans-serif">
     <div class="caja_about_titulo">
       <img class="imgAbout"  [src]="persona.img"  alt={{persona.img}} *ngIf="imgExist" #imageRef>
       <img class="imgAbout" src='{{img}}'  alt="imagen del usuario" *ngIf="!imgExist" #imageRef>
@@ -13,13 +13,16 @@
     <hr style="border-color:black !important;border-width: 2px !important ;width: 100% !important">
 
     <!-- TITULO -->
-    <div class=" col-md-3 col-lg-3  divCenter centrado" style="height: 30vh;">
+    <div class=" col-md-3 col-lg-3  divCenter centrado">
+    <!-- <div class=" col-md-3 col-lg-3  divCenter centrado" style="height: 30vh;"> -->
         <div>
             <div class="caja_about_titulo ">
-              <div class="caja_titulo">
-                <p>{{persona.title}}</p>
+              <div style="font-family: sans-serif" class="caja_titulo">
+                <p>{{title_a}}</p>
+                <p>{{title_b}}</p>
+                <p>{{title_c}}</p>
                 <p>{{persona.edad}}</p>
-                <p>{{persona.city}}</p>
+                <p style="margin: 0;">{{persona.city}}</p>
               </div>
             </div>
         </div>
@@ -28,12 +31,12 @@
     <hr style="border-color:black !important;border-width: 2px !important ;width: 100% !important">
 
       <!-- SOBRE MI VIDA -->
-    <div class=" col-md-6 col-lg-6 caja_sobre_mi_vida">
+    <div class=" col-md-6 col-lg-6 caja_sobre_mi_vida" style="font-family: sans-serif">
         <div class="centrado row" style="margin:0 1rem">
           <div class="caja_sobre_mi_vida">
               <h3 class="text-center" style="margin: .5rem 0">{{persona.titleAbout}}</h3>
           </div>
-          <p style="padding:0 1rem;text-align: justify;">{{persona.about}}</p>
+          <p style="padding:0 1rem;text-align: justify">{{persona.about}}</p>
         </div>
     <div *ngIf="isLogged" class="div_btn_edit_frase btn_posicion">
 

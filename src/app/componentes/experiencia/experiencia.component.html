@@ -17,20 +17,20 @@
         </div>
 
         <div class="card_Row">
-          <div *ngFor="let item of expe" style="display: flex; align-items: center;height:40vh">
+          <div *ngFor="let item of expe" style="display: flex; align-items: center;height:40vh;margin: 1rem;height: auto;">
             <div class="text-center" id="hiddenCard"
               style="padding: 5px;background-color:darkgrey ;border-radius: 5px;display: flex; justify-content: center;border: 1px solid black;height: inherit;">
               <!--targeta de datos  -->
               <div class="card" style="width: 320px;border: 1px solid black; background-color: lightgray;height: 100%;">
-                <div class="card-header fw-bolder card_experienciaLaboral">
+                <div class="card-header fw-bolder card_experienciaLaboral fs-4" style="height:auto;">
                   {{item.nombreE}}
                 </div>
                 <div class="card-body"
                   style="margin: 1rem;display: flex;flex-direction: column;justify-content: space-between;">
-                  <div class=" text-uppercase fs-4">{{item.cargoE}}</div>
-                  <p class="fs-5 lh-base">{{item.descripcionE}}</p>
-                  <p class="fs-5 lh-base">{{item.startE}}-{{item.endE}}</p>
-                  <p class="fs-5 lh-base">{{item.cityE}}</p>
+                  <div class=" text-uppercase fs-5">{{item.cargoE}}</div>
+                  <p class="fs-6 lh-base">{{item.descripcionE}}</p>
+                  <p class="fs-6 lh-base">{{item.startE}}-{{item.endE}}</p>
+                  <p class="fs-6 lh-base">{{item.cityE}}</p>
 
                   <div *ngIf="isLogged" style="display: flex; justify-content: space-between;">
                     <!-- btn lapiz editar -->

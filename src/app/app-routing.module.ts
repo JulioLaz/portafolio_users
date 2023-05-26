@@ -22,7 +22,7 @@ import { NewProyectoComponent } from './componentes/proyectos/new-proyecto.compo
 import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { EditCursoComponent } from './componentes/cursos/edit-curso.component';
 import { NewCursoComponent } from './componentes/cursos/new-curso.component';
-import { ModalInicioComponent } from './componentes/modal-inicio/modal-inicio.component';
+import { ModalInicioComponent } from './componentes/ayuda/modal-inicio.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

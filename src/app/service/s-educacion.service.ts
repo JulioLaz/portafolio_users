@@ -9,8 +9,6 @@ import { Educacion } from '../model/educacion';
 })
 export class SEducacionService {
 
-  // URL = 'https://portafolio-back-juliolazarte.onrender.com/educacion/';
-  // URL = 'http://localhost:8080/'+ 'educacion/';
   URL = environment.URL + 'educacion/';
 
   constructor(private httpClient : HttpClient) { }

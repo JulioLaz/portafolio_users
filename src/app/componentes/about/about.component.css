@@ -85,7 +85,7 @@ div {
 
 .divCenter {
   border: none;
-  padding: 1rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: center;
 
@@ -115,6 +115,7 @@ h3{
     border-right: 1px solid black;
     border-top: none;
     border-bottom: none;
+    padding: 1rem;
   }
 p{
   font-size: 1rem;

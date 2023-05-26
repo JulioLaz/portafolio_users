@@ -13,7 +13,7 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class EncabezadoComponent implements OnInit {
 
-  loader:boolean;
+  loader: boolean;
 
   persona: Persona = new Persona(null, "", "", "", "", "", "", "", "");
   personas: Persona[] = [];
@@ -24,14 +24,22 @@ export class EncabezadoComponent implements OnInit {
   nuevoUsuario: NuevoUsuario[] = [];
   userId: number;
   nombre: string;
+  cargando_datos: boolean = true;
+  cargando_user: boolean = false;
+  cargando_users: boolean = false;
+  cargando_user_id: boolean = false;
+  cargando_user_mail: boolean = false;
+  cargando_info_user: string;
+  cargando_info_user_id: string;
+  cargando_info_user_mail: string;
 
   verSeleccion: number;
   value: number;
 
   email: any;
   correo: any;
-  redes_up:boolean=false;
-  correo_up:boolean=false;
+  redes_up: boolean = false;
+  correo_up: boolean = false;
 
   imagen_user: string = '/assets/julio.png';
 
@@ -44,11 +52,23 @@ export class EncabezadoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.progressValue = 20;
     this.token();
     this.cargarId();
     this.cargarPersonas();
   }
+  ///////////////////////////////////
+  progressValue: number = 10;
 
+  updateProgress(value: number) {
+    this.progressValue += value;
+    if (this.progressValue < 0) {
+      this.progressValue = 0;
+    } else if (this.progressValue > 100) {
+      this.progressValue = 100;
+    }
+  }
+  ///////////////////////////////////
   token() {
     if (this.tokenservice.getToken()) {
       this.isLogged = true;
@@ -63,16 +83,22 @@ export class EncabezadoComponent implements OnInit {
     } else {
       this.isLoggedDel = false
     }
-    console.log("id usuario: "+this.userId + " isLoggedDel:  "+this.isLoggedDel+ " isLogged: "+ this.isLogged)
+    console.log("id usuario: " + this.userId + " isLoggedDel:  " + this.isLoggedDel + " isLogged: " + this.isLogged)
   }
 
   cargarId() {
+
     this.authService.lista().subscribe(
       data => {
         this.nuevoUsuario = data;
-        if(!this.tokenservice.getToken()) {
+        if (!this.tokenservice.getToken()) {
           console.log("Persona: 1");
-          return  this.userId=1,this.cargarPersona(1)
+          this.cargando_users = true;
+
+          this.progressValue = 20;
+          console.log("this.progressValue desde cargarId(): ", this.progressValue)
+          this.cargando_info_user = `Cargando datos de Julio A. Lazarte`;
+          return this.userId = 1, this.cargarPersona(1)
         }
         this.nuevoUsuario.forEach(nuevo => {
 
@@ -82,30 +108,28 @@ export class EncabezadoComponent implements OnInit {
             this.nombre = nuevo.nombre;
             this.habilitarDelUser(this.userId);
             this.cargarPersona(this.userId);
-            // return
-          }else if (this.verSeleccion) {
+            console.log('desde encabezado: ', this.nombre)
+          } else if (this.verSeleccion) {
             this.cargarPersona(this.verSeleccion);
             console.log("Persona: " + this.verSeleccion);
 
           }
-          // else if(!this.tokenservice.getToken()) {
-          //   this.userId=1;
-          //   this.cargarPersona(1);
-          //   console.log("Persona: 1");
-          // }
         })
       })
-    }
-
+  }
 
   cargarPersona(id: number): void {
+
+    console.log("this.progressValue desde cargarPersona(): ", this.progressValue)
     this.personaService.detail(id).subscribe((data) => {
       this.persona = data;
-      return;
+      this.progressValue += 30;
+      console.log("this.progressValue desde cargarPersona(): ", this.progressValue)
+      this.cargarEmail(id);
+      // return;
     });
-
-    this.cargarEmail(id);
-    return;
+    // this.cargarEmail(id);
+    // return;
     // console.log("Persona: " + JSON.stringify(this.persona))
 
   }
@@ -113,7 +137,8 @@ export class EncabezadoComponent implements OnInit {
   cargarPersonas(): void {
     this.personaService.lista().subscribe((data) => {
       this.personas = data;
-      console.log("Persona: " + JSON.stringify(this.personas))
+      console.log("Persona: cargatodos los datos. habilitar console para ver todo ");
+      // console.log("Persona: " + JSON.stringify(this.personas));
     })
   }
 
@@ -144,10 +169,12 @@ export class EncabezadoComponent implements OnInit {
   btnSubmit() {
     ('loading');
     setTimeout(function () {
-      ('reset')}, 8000);
+      ('reset')
+    }, 8000);
   }
 
   onValue_new(id: any, nombre: string, apellido: string) {
+    this.cargando_datos = true;
     this.valorPorDefecto = `${nombre} ${apellido}`;
     this.verSeleccion = parseInt(id, 10);
     console.log("Value: " + this.verSeleccion);
@@ -155,37 +182,76 @@ export class EncabezadoComponent implements OnInit {
     this.envioUsuarioIdService.cargadorUsuarioId.emit({
       data: this.verSeleccion
     });
-    this.userId=this.verSeleccion
+    this.cargando_user_id = true;
+    this.cargando_users = false;
+    this.progressValue = 20;
+    this.cargando_info_user_id = `Cargando usuario ${this.valorPorDefecto}`;
+
+    this.userId = this.verSeleccion;
     this.cargarPersona(this.verSeleccion);
-    if(id==1){
-      this.redes_up=true
-      this.correo_up=true
-    }else{
-      this.correo_up=true;
-      this.redes_up=false
+    if (id == 1) {
+      this.redes_up = true
+      this.correo_up = true
+    } else {
+      this.correo_up = true;
+      this.redes_up = false
     }
+    console.log("this.progressValue desde onValue_new(): ", this.progressValue)
   }
 
   cargarEmail(id: number): void {
-    // this.authService.lista().subscribe(
+    console.log("this.progressValue desde email(): ", this.progressValue)
+    this.cargando_info_user_mail = `Cargando email`;
+    this.progressValue += 0;
+    console.log("this.progressValue desde email(): ", this.progressValue)
+    this.cargando_user_mail = true;
+
     this.authService.getIdUsuario(id).subscribe(
       data => {
         data
-        // this.email = (JSON.stringify(data));
         this.correo = (JSON.parse(JSON.stringify(data))).email;
-        // const objetoJSON_00 = (JSON.parse(JSON.stringify(data))).email;
-        // this.correo = objetoJSON_00.email;
-            console.log("desde cargarEmail: " + this.correo);
+        this.progressValue += 10;
 
-        // for (let i = 0; i < objetoJSON_00.length; i++) {
-        //   const objetoJSON_new = JSON.parse(JSON.stringify(data[i]));
-        //   if (objetoJSON_new.id == id) {
-        //     this.correo = objetoJSON_new.email;
-        //     console.log("desde cargarEmail: " + objetoJSON_new.email);
-        //   }
-        // }
+        console.log("desde cargarEmail: " + this.correo);
+
+        console.log("this.progressValue desde email(): ", this.progressValue)
+        // this.progressValue = 100;
+        if (this.valorPorDefecto == 'USUARIO') {
+          // this.cargando_datos = false;
+          setTimeout(() => {
+            let progressValues = this.progressValue;
+            const incrementInterval = setInterval(() => {
+              progressValues += 10;
+              this.progressValue = progressValues;
+              console.log('Incremento:', progressValues);
+
+              if (progressValues >= 100) {
+                clearInterval(incrementInterval);
+                this.cargando_user_id = false;
+                this.cargando_user_mail = false;
+                this.cargando_datos = false;
+              }
+            }, 3000)}, 8000);
+        }else{
+          setTimeout(() => {
+            let progressValues = this.progressValue;
+            const incrementInterval = setInterval(() => {
+              progressValues += 10;
+              this.progressValue = progressValues;
+              console.log('Incremento:', progressValues);
+
+              if (progressValues >= 100) {
+                clearInterval(incrementInterval);
+                this.cargando_user_id = false;
+                this.cargando_user_mail = false;
+                this.cargando_datos = false;
+              }
+
+            }, 200)}, 1000);
+        }
       }
     )
+
   }
 }
 

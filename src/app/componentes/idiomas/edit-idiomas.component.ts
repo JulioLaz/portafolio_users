@@ -29,7 +29,7 @@ export class EditIdiomasComponent implements OnInit {
       const id = this.activatedRouter.snapshot.params['id'];
       this.sIdiomasService.detail(id).subscribe({
           next:(data)=>{this.idiomas = data},
-          error:(err) =>{Swal.fire("Error al cargar hardsskills"+ err),
+          error:(err) =>{Swal.fire("Error al cargar idioma"+ err),
              this.router.navigate([''])}
         })
       }
@@ -38,17 +38,17 @@ export class EditIdiomasComponent implements OnInit {
       const id = this.activatedRouter.snapshot.params['id'];
       this.sIdiomasService.update(id, this.idiomas).subscribe({
        next:()=>{
-        console.log("hardsskills editada: "+this.idiomas.nombre ),
+        console.log("idioma editado: "+this.idiomas.nombre ),
        Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'hardsskills editada: '+this.idiomas.nombre,
+        title: 'idioma editado: '+this.idiomas.nombre,
         showConfirmButton: false,
         timer: 1800
       }),
           this.router.navigate([''])},
       error:() => {
-          Swal.fire("Error al modificar la educacion");
+          Swal.fire("Error al modificar idioma");
           this.router.navigate([''])
         }
         })

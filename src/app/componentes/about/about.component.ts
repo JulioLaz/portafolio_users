@@ -46,6 +46,10 @@ export class AboutComponent implements OnInit {
   imagen_user:string='/assets/julio.png';
 //////
 
+  title_a:string;
+  title_b:string;
+  title_c:string;
+
   constructor(
     private tokenService: TokenService,
     public personaService: PersonaService,
@@ -107,13 +111,16 @@ export class AboutComponent implements OnInit {
   cargarPersona(id: number): void {
     this.personaService.detail(id).subscribe((data) => {
       this.persona = data;
+      const partes: string[] = this.persona.title.split('&');
+      this.title_a = partes[0].trim();
+      this.title_b= partes[1].trim();
+      this.title_c= partes[2].trim();
       this.img=(JSON.stringify(this.persona.img));
       if((JSON.stringify(this.persona.img)).length<3){
         this.img="../../../assets/julio.png";
         this.imgExist=false;
       }else{
         this.img=this.persona.img;
-        // this.downloadImage(this.img)
         // console.log('imagen  url'+ this.img);
       }
     })
