@@ -19,8 +19,8 @@
             <div class="caja_about_titulo ">
               <div style="font-family: sans-serif" class="caja_titulo">
                 <p>{{title_a}}</p>
-                <p>{{title_b}}</p>
-                <p>{{title_c}}</p>
+                <p *ngIf="condicion_title_b">{{title_b}}</p>
+                <p *ngIf="condicion_title_c">{{title_c}}</p>
                 <p>{{persona.edad}}</p>
                 <p style="margin: 0;">{{persona.city}}</p>
               </div>

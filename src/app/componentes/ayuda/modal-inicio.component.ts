@@ -14,13 +14,9 @@ export class ModalInicioComponent implements OnInit {
     private router:Router
   ) { }
 
-  // showModal = true;
-
   closeModal() {
     this.showModal = false;
-    // document.body.classList.remove("modal-open");
     this.router.navigate(['/']);
-
   }
 
   ngOnInit(): void {

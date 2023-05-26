@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dropdowns-header',
@@ -9,11 +10,13 @@ import { Router } from '@angular/router';
 export class DropdownsHeaderComponent implements OnInit {
 
   constructor(
-    private router:Router
+    private router:Router,
+    public location:Location
   ) { }
 
   ngOnInit(): void {
   }
+  
   modal_up(): void {
     this.router.navigateByUrl('/modal');
   }

@@ -49,6 +49,8 @@ export class AboutComponent implements OnInit {
   title_a:string;
   title_b:string;
   title_c:string;
+  condicion_title_b:boolean=false;
+  condicion_title_c:boolean=false;
 
   constructor(
     private tokenService: TokenService,
@@ -111,10 +113,18 @@ export class AboutComponent implements OnInit {
   cargarPersona(id: number): void {
     this.personaService.detail(id).subscribe((data) => {
       this.persona = data;
-      const partes: string[] = this.persona.title.split('&');
-      this.title_a = partes[0].trim();
-      this.title_b= partes[1].trim();
-      this.title_c= partes[2].trim();
+      if (this.persona.title.includes('&')) {
+        this.condicion_title_b=true;
+        const partes: string[] = this.persona.title.split('&');
+        this.title_a = partes[0].trim();
+        this.title_b= partes[1].trim();
+        if (partes.length>2){
+          this.condicion_title_c=true;
+          this.title_c= partes[2].trim();
+        }
+      } else {
+        this.title_a = this.persona.title;
+      }
       this.img=(JSON.stringify(this.persona.img));
       if((JSON.stringify(this.persona.img)).length<3){
         this.img="../../../assets/julio.png";

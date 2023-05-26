@@ -52,7 +52,6 @@ export class EncabezadoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.progressValue = 20;
     this.token();
     this.cargarId();
     this.cargarPersonas();
