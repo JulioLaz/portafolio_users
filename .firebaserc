@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "curriculum-users"
-  }
+    "default": "curriculum-users",
+    "jal-cv": "julio-lazarte-cv"
+  },
+  "targets": {},
+  "etags": {}
 }

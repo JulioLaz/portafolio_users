@@ -118,7 +118,7 @@ export class PdfComponent implements OnInit {
         this.cargarCursos(data.data);
         this.cargarFraseUsuarioId(data.data);
         this.cargarEmail(data.data);
-        console.log("RECIBEINDO DATA DESDE PDF: " + data.data);
+        // console.log("RECIBEINDO DATA DESDE PDF: " + data.data);
       }
     )
   }
@@ -158,7 +158,7 @@ export class PdfComponent implements OnInit {
         for (let i = 0; i < objetoJSON_00.length; i++) {
           const objetoJSON_new = JSON.parse(JSON.stringify(data[i]));
           if (objetoJSON_new.id == id) {
-            console.log("desde cargarEmail: " + objetoJSON_new.email);
+            // console.log("desde cargarEmail: " + objetoJSON_new.email);
             this.correo = objetoJSON_new.email
           }
         }
@@ -171,7 +171,7 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.cursos = JSON.parse(JSON.stringify(data));
-        console.log('PDF: Cargar Cursos' + JSON.stringify(data))
+        // console.log('PDF: Cargar Cursos' + JSON.stringify(data))
       })
   }
 
@@ -180,7 +180,7 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.proyectos = JSON.parse(JSON.stringify(data));
-        console.log('PDF: Cargar proyectos' + JSON.stringify(data))
+        // console.log('PDF: Cargar proyectos' + JSON.stringify(data))
       })
   }
 
@@ -189,7 +189,7 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.hardsskills = JSON.parse(JSON.stringify(data));
-        console.log('PDF: Cargar hardsskills' + JSON.stringify(data))
+        // console.log('PDF: Cargar hardsskills' + JSON.stringify(data))
       })
   }
 
@@ -198,7 +198,7 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.idioma = JSON.parse(JSON.stringify(data));
-        console.log('PDF: Cargar idioma' + JSON.stringify(data))
+        // console.log('PDF: Cargar idioma' + JSON.stringify(data))
       })
   }
 
@@ -212,7 +212,7 @@ export class PdfComponent implements OnInit {
       } else {
         this.img_foto = this.personas.img;
       }
-      console.log('PDF: Cargar personas' + this.personas)
+      // console.log('PDF: Cargar personas' + this.personas)
     })
   }
 
@@ -221,7 +221,7 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.educacion = JSON.parse(JSON.stringify(data));
-        console.log('PDF: Cargar educacion' + JSON.stringify(data))
+        // console.log('PDF: Cargar educacion' + JSON.stringify(data))
       })
   };
 
@@ -230,7 +230,7 @@ export class PdfComponent implements OnInit {
       data => {
         data
         this.expe = JSON.parse(JSON.stringify(data));
-        console.log('PDF: Cargar experiencia' + JSON.stringify(data))
+        // console.log('PDF: Cargar experiencia' + JSON.stringify(data))
       })
   }
 
@@ -304,7 +304,7 @@ export class PdfComponent implements OnInit {
                       },
                       {
                         text: 'Ver Curriculum Web',
-                        link: `https://portfolio-julio-lazarte.web.app`,
+                        link: `https://julio-lazarte-cv.web.app`,
                         style: {
                           decoration: 'underline',
                           color: '#2780E3',
@@ -332,11 +332,18 @@ export class PdfComponent implements OnInit {
             text: 'Formación',
             style: 'sectionHeader',
           },
+
           //Agrega la sección de educación
-          {
-            ul: this.educacion.map((edu: any) => `${edu.titleE} - ${edu.schoolE} (${edu.startE} - ${edu.endE}) ${edu.estadoE}`),
-            margin: [15, 0, 0, 0],
-          },
+            {
+          ul: this.educacion.map((edu: any) => {
+            return {
+              text: [
+                { text: `${edu.titleE}`, bold: true,color:'#1B23A3' }, // Agregamos la propiedad 'bold' al objeto de estilo
+                ` - ${edu.schoolE} (${edu.startE} - ${edu.endE}) ${edu.estadoE}.`
+              ]
+            };
+          }),
+          margin: [15, 0, 0, 0],},
 
           // linea celeste fina
           { margin: [0, 5, 0, 0], table: { headerRows: 1, widths: ['*'], body: [[''], ['']] }, layout: { hLineWidth: function (i: number, node: any) { return (i === 1) ? 1 : 0 }, hLineColor: function (i: number, node: any) { return (i === 1) ? '#5382af ' : 'white' }, vLineWidth: function (i: any, node: any) { return 0 } } },
@@ -431,9 +438,15 @@ export class PdfComponent implements OnInit {
             style: 'sectionHeader',
           },
           {
-            ul: this.expe.map((exp: any) => [
-              `${exp.cargoE} - ${exp.nombreE} (${exp.startE} - ${exp.endE}) ${exp.descripcionE} - ${exp.cityE}`,
-            ]), margin: [15, 0, 0, 0],
+            ul: this.expe.map((exp: any)=> {
+              return {
+                text: [
+                  { text: `${exp.cargoE}`, bold: true,color:'#1B23A3' }, // Agregamos la propiedad 'bold' al objeto de estilo
+                  ` - ${exp.nombreE} (${exp.startE} - ${exp.endE}) ${exp.descripcionE} - ${exp.cityE}.`
+                ]
+              };
+            }),
+            margin: [15, 0, 0, 0],
           },
 
           // linea celeste fina
@@ -444,7 +457,7 @@ export class PdfComponent implements OnInit {
           {
             columns: [
               [
-                { text: 'Hards', style: 'sectionHeader', alignment: 'center', margin: [0, 5, 0, 0] },
+                { text: 'Hard', style: 'sectionHeader', alignment: 'center', margin: [0, 5, 0, 0] },
                 [{ text: ' & ', style: 'sectionHeader', margin: [0, 0, 0, 0], alignment: 'center' }],
                 [{ text: 'Soft skills', style: 'sectionHeader', alignment: 'center', margin: [0, 0, 0, 0] },
                 ]
@@ -472,7 +485,9 @@ export class PdfComponent implements OnInit {
                         y: 0.5,
                         w: porcentajeNum,
                         h: 9,
-                        color: porcentajeNum >= 80 ? '#002f7a' : porcentajeNum >= 50 ? '#0044b3' : '#5797ff'
+                        // color: porcentajeNum >= 80 ? '#002f7a' : porcentajeNum >= 50 ? '#0044b3' : '#5797ff'
+                        color: porcentajeNum >= 90 ? '#070E76' : porcentajeNum >= 80 ? '#1B23A3' : porcentajeNum >= 70 ? '#434CDA' : porcentajeNum >= 60 ? '#747CFC' : porcentajeNum >= 50 ? '#999FFD' : porcentajeNum >= 40 ? '#BBBFFA' : '#D8DAF8'
+
                       }
                     ]
                   };
@@ -506,7 +521,8 @@ export class PdfComponent implements OnInit {
                         y: 0.5,
                         w: porcentajeNum,
                         h: 9,
-                        color: porcentajeNum >= 80 ? '#002f7a' : porcentajeNum >= 50 ? '#0044b3' : '#5797ff'
+                        color: porcentajeNum >= 90 ? '#070E76' : porcentajeNum >= 80 ? '#1B23A3' : porcentajeNum >= 70 ? '#434CDA' : porcentajeNum >= 60 ? '#747CFC' : porcentajeNum >= 50 ? '#999FFD' : porcentajeNum >= 40 ? '#BBBFFA' : '#D8DAF8'
+
                       }
                     ]
                   };
@@ -542,7 +558,6 @@ export class PdfComponent implements OnInit {
                         w: porcentajeNum,
                         h: 9,
                         color: porcentajeNum >= 90 ? '#070E76' : porcentajeNum >= 80 ? '#1B23A3' : porcentajeNum >= 70 ? '#434CDA' : porcentajeNum >= 60 ? '#747CFC' : porcentajeNum >= 50 ? '#999FFD' : porcentajeNum >= 40 ? '#BBBFFA' : '#D8DAF8'
-                        // color: porcentajeNum >= 90 ? '#002f7a' : porcentajeNum >= 80 ? '#002f7a' :porcentajeNum >= 70 ? '#002f7a' : porcentajeNum >= 60 ? '#002f7a' :porcentajeNum >= 50 ? '#002f7a' : porcentajeNum >= 40 ? '#0044b3' : '#5797ff'
                       }
                     ]
                   };
@@ -567,12 +582,15 @@ export class PdfComponent implements OnInit {
             style: 'sectionHeader',
           },
           {
-            ul: this.proyectos.map((exp: any) => [
-              {
-                text: `${exp.proyectos}: ${exp.descripcion} (${exp.fecha}) `,
+            ul: this.proyectos.map((exp: any)=> {
+              return {
+                text: [
+                  { text: `${exp.proyectos}`, bold: true,color:'#1B23A3' }, // Agregamos la propiedad 'bold' al objeto de estilo
+                  `: ${exp.descripcion} (${exp.fecha}).`
+                ],
                 link: exp.urlProyecto
-              }
-            ]),
+              };
+            }),
             margin: [15, 0, 0, 0],
           },
 
@@ -588,7 +606,9 @@ export class PdfComponent implements OnInit {
             margin: [20, 0, 0, 0],
             text: this.cursos.map((cursos: any) => {
               return {
-                text: `√  ${cursos.curso}       `
+                text: `√  ${cursos.curso}       `, bold: true,color:'#1B23A3',
+                link:cursos.imgCurso,
+                target: 'blank'
               }
             })
           },

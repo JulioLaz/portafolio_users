@@ -33,7 +33,7 @@ export class EditExperienciaComponent implements OnInit {
     const id = this.activatedRouter.snapshot.params['id'];
     this.sExperiencia.update(id, this.expLab).subscribe({
       next: () => {
-        console.log("Educacion editada: "+this.expLab.nombreE ),
+        // console.log("Educacion editada: "+this.expLab.nombreE ),
         Swal.fire({
          position: 'center',
          icon: 'success',

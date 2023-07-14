@@ -22,7 +22,7 @@ export class EditProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.cargarProyecto();
   }
-  
+
   cargarProyecto() {
     const id = this.activatedRouter.snapshot.params['id'];
     this.sProyectosService.detail(id).subscribe({
@@ -38,7 +38,7 @@ export class EditProyectoComponent implements OnInit {
     const id = this.activatedRouter.snapshot.params['id'];
     this.sProyectosService.update(id, this.proyectos).subscribe({
       next: () => {
-        console.log("Proyecto editado: " + this.proyectos.proyectos),
+        // console.log("Proyecto editado: " + this.proyectos.proyectos),
           Swal.fire({
             position: 'center',
             icon: 'success',

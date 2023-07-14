@@ -4,12 +4,12 @@
 
 export const environment = {
   firebase: {
-    projectId: 'portfolio-julio-lazarte',
+    projectId: 'julio-lazarte-cv',
     appId: '1:854128116448:web:f80fdc4b2f50f5d4580685',
-    storageBucket: 'portfolio-julio-lazarte.appspot.com',
+    storageBucket: 'julio-lazarte-cv.appspot.com',
     locationId: 'southamerica-east1',
     apiKey: 'AIzaSyCtVrD7oYLhPqFhDqTvmMBZwga81I_21PM',
-    authDomain: 'portfolio-julio-lazarte.firebaseapp.com',
+    authDomain: 'julio-lazarte-cv.firebaseapp.com',
     messagingSenderId: '854128116448',
   },
 

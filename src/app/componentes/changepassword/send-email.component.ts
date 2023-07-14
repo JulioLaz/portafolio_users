@@ -50,7 +50,7 @@ export class SendEmailComponent implements OnInit {
       this.dto = new EmailValuesDTO(this.mailTo);
       this.emailPasswordService.sendemail(this.dto).subscribe({
         next:(data)=>{
-          console.log(JSON.stringify(data));
+          // console.log(JSON.stringify(data));
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -62,7 +62,7 @@ export class SendEmailComponent implements OnInit {
         error:(err) => {
           this.spinerBtn = true;
 
-          console.log(JSON.stringify(err.error.mensaje));
+          // console.log(JSON.stringify(err.error.mensaje));
           Swal.fire({
             position: 'center',
             icon: 'error',
@@ -72,7 +72,7 @@ export class SendEmailComponent implements OnInit {
           })
         },
         complete:()=>{
-          console.log("COMPLETE"),
+          // console.log("COMPLETE"),
           this.router.navigate(['']);
           setTimeout(() => {location.reload()}, 1000)
         }

@@ -1,49 +1,54 @@
-  <body>
-    <section class="vh-100"
-    style="background-image: url(../../../assets/fondo.jpg);  background-size: cover;"
-    >
-  <div class="container">
-    <div class="row">
+<body>
+  <section class="vh-100" style="background-image: url(../../../assets/fondo.jpg);  background-size: cover;">
+    <div class="container">
+      <div class="row">
         <div style="display: flex;justify-content: center;">
-            <form (ngSubmit)="onCreateUser();spinerBtn = false" novalidate #f="ngForm" style="background-color: lightblue;position: relative;;margin-top: 5rem; width: 60vw;padding: 2.5rem; border:2px solid grey; border-radius: .5rem;">
-             <div >
-              <button type="button" class="btn-close btn_position_home"  aria-label="Close" routerLink="/"></button>
-              <h2 style="text-align:center; border-bottom: 2px solid grey;font-size: 1.5rem;padding:.5rem 0;">NUEVO USUARIO</h2>
-             </div>
-                <div class="input-group mb-3">
-                   <label class="texto_casillero input-group-text" id="inputGroup-sizing-default" for="nombre">Nombre:</label>
-                   <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                   id="nombre" name="nombre" [(ngModel)]="nombre" required onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)" placeholder="Julio">
+          <form (ngSubmit)="onCreateUser();spinerBtn = false" novalidate #f="ngForm"
+            style="background-color: lightblue;position: relative;;margin-top: 5rem; width: 60vw;padding: 2.5rem; border:2px solid grey; border-radius: .5rem;">
+            <div>
+              <button type="button" class="btn-close btn_position_home" aria-label="Close" routerLink="/"></button>
+              <h2 style="text-align:center; border-bottom: 2px solid grey;font-size: 1.5rem;padding:.5rem 0;">NUEVO
+                USUARIO</h2>
+            </div>
+            <div class="input-group mb-3">
+              <label class="texto_casillero input-group-text" id="inputGroup-sizing-default"
+                for="nombre">Nombre:</label>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" id="nombre" name="nombre" [(ngModel)]="nombre" required
+                onkeydown="return /[a-zA-ZñÑá-úÁ-Ú ]/i.test(event.key)" placeholder="Julio">
+            </div>
+            <div class="input-group mb-3">
+              <label class="texto_casillero input-group-text" id="inputGroup-sizing-default"
+                for="nombreUsuario">NombreUsuario:</label>
+              <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" id="nombreUsuario" name="nombreUsuario"
+                [(ngModel)]="nameUsuario" required placeholder="Genio">
+            </div>
+            <div class=" input-group mb-3">
+              <label class=" texto_casillero input-group-text" id="inputGroup-sizing-default" for="email">email:</label>
+              <input type="email" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" id="email" name="email" [(ngModel)]="email" required
+                placeholder="usuario@gmail.com">
+            </div>
+            <div class=" input-group mb-3">
+              <label class=" texto_casillero input-group-text" id="inputGroup-sizing-default"
+                for="password">Password:</label>
+              <input type="password" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" id="password" name="password" [(ngModel)]="password"
+                required placeholder="*******">
+            </div>
+            <div style="display: flex;justify-content: center;">
+              <button type="submit" class="btn btn-primary" ngClick="Submit">
+                <span *ngIf="spinerBtn">Guardar cambios</span>
+                <div *ngIf="!spinerBtn">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  enviando...
                 </div>
-                <div class="input-group mb-3">
-                   <label class="texto_casillero input-group-text" id="inputGroup-sizing-default" for="nombreUsuario">NombreUsuario:</label>
-                   <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                   id="nombreUsuario" name="nombreUsuario" [(ngModel)]="nameUsuario" required placeholder="Genio">
-                </div>
-                <div class=" input-group mb-3">
-                   <label class=" texto_casillero input-group-text" id="inputGroup-sizing-default" for="email">email:</label>
-                   <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                   id="email" name="email" [(ngModel)]="email" required placeholder="usuario@gmail.com">
-                </div>
-                <div class=" input-group mb-3">
-                   <label class=" texto_casillero input-group-text" id="inputGroup-sizing-default" for="password">Password:</label>
-                   <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                   id="password" name="password" [(ngModel)]="password" required placeholder="*******">
-                </div>
-                <div style="display: flex;justify-content: center;">
-                  <button type="submit" class="btn btn-primary"
-                    ngClick="Submit"
-                    >
-                    <span *ngIf="spinerBtn">Guardar cambios</span>
-                    <div *ngIf="!spinerBtn">
-                      <span  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    enviando...
-                      </div>
-                    </button>
-                </div>
-            </form>
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-  </div>
-    </section>
-  </body>
+  </section>
+</body>

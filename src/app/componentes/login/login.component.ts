@@ -54,8 +54,8 @@ login:any;
         this.roles=data.authorities,
         this.router.navigate(['']),
         this.login =  this.loginUsuario.password,
-        this.nombreUsuario = data.nombreUsuario,
-        console.log("token: "+ JSON.stringify(data))
+        this.nombreUsuario = data.nombreUsuario
+        // console.log("token: "+ JSON.stringify(data))
         // console.log("token data.authorities: "+ JSON.stringify(data.authorities))
       },
 
@@ -63,8 +63,8 @@ login:any;
       this.isLogged=false,
       this.isLoginFail=true,
       this.errMsj=err.error.mensaje,
-      this.errMsj = (JSON.stringify(err.error.mensaje)),
-      console.log('desde LOGIN: '+this.errMsj);
+      this.errMsj = (JSON.stringify(err.error.mensaje))
+      // console.log('desde LOGIN: '+this.errMsj);
       if(this.errMsj!=undefined){
         Swal.fire({
           position: 'center',

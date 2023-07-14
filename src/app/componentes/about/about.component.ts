@@ -70,7 +70,7 @@ export class AboutComponent implements OnInit {
     this.envioUsuarioIdService.cargadorUsuarioId.subscribe(
       data=>{
         this.cargarPersona(data.data);
-        console.log("RECIBEINDO DATA DESDE ABOUT: "+data.data)
+        // console.log("RECIBEINDO DATA DESDE ABOUT: "+data.data)
       }
       )
   }
@@ -89,8 +89,8 @@ export class AboutComponent implements OnInit {
         this.rol = JSON.parse(JSON.stringify(data));
         this.rol.forEach(e => console.log(e.id + "typeof: " + typeof e.id + typeof this.rol));
         this.rol.forEach(i => i.id);
-        console.log("Rol: " + JSON.stringify(this.rol));
-        console.log("Data: " + (JSON.stringify(data)));
+        // console.log("Rol: " + JSON.stringify(this.rol));
+        // console.log("Data: " + (JSON.stringify(data)));
       }
     )
   }
@@ -101,7 +101,7 @@ export class AboutComponent implements OnInit {
         this.nuevoUsuario = data;
         this.nuevoUsuario.forEach(nuevo => {
           if (nuevo.nombreUsuario == this.tokenService.getUserName()) {
-            console.log(" desde if: " + nuevo.nombreUsuario + " -  id: " + nuevo.id);
+            // console.log(" desde if: " + nuevo.nombreUsuario + " -  id: " + nuevo.id);
             this.id = nuevo.id;
             this.cargarPersona(this.id);
           }
@@ -123,6 +123,7 @@ export class AboutComponent implements OnInit {
           this.title_c= partes[2].trim();
         }
       } else {
+        this.condicion_title_b=false;
         this.title_a = this.persona.title;
       }
       this.img=(JSON.stringify(this.persona.img));
@@ -161,12 +162,12 @@ export class AboutComponent implements OnInit {
 
   cargarIdXNombre() {
     const nombre: String = "A";
-    console.log("cargarIdXNombre Nombre: " + nombre)
+    // console.log("cargarIdXNombre Nombre: " + nombre)
     this.authService.nombreXid(nombre).subscribe(
       data => {
         this.userId = data;
-        console.log(this.userId);
-        console.log("cargarIdXNombre: " + typeof data + JSON.stringify(data));
+        // console.log(this.userId);
+        // console.log("cargarIdXNombre: " + typeof data + JSON.stringify(data));
       }
     )
   }

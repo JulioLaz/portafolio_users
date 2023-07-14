@@ -38,7 +38,7 @@ export class EditIdiomasComponent implements OnInit {
       const id = this.activatedRouter.snapshot.params['id'];
       this.sIdiomasService.update(id, this.idiomas).subscribe({
        next:()=>{
-        console.log("idioma editado: "+this.idiomas.nombre ),
+        // console.log("idioma editado: "+this.idiomas.nombre ),
        Swal.fire({
         position: 'center',
         icon: 'success',

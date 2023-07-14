@@ -45,7 +45,7 @@ export class EducacionComponent implements OnInit {
       data => {
         this.cargarEducacion(data.data);
         this.cargarFraseUsuarioId(data.data);
-        console.log("RECIBEINDO DATA: " + data.data)
+        // console.log("RECIBEINDO DATA: " + data.data)
       }
     )
   }
@@ -127,7 +127,7 @@ export class EducacionComponent implements OnInit {
   }
 
   cargarUsuarioId(): void {
-    console.log("EJECUTA EL METODO CARGAR USUARIO ");
+    // console.log("EJECUTA EL METODO CARGAR USUARIO desde educacion");
     this.authService.lista().subscribe(
       data => {
         this.nuevoUsuario = data;
@@ -142,7 +142,7 @@ export class EducacionComponent implements OnInit {
         if (this.tokenService.getUserName() == undefined) {
           this.cargarEducacion(this.envioUsuarioIdService.selecionUsuarioId);
           this.cargarFraseUsuarioId(this.envioUsuarioIdService.selecionUsuarioId);
-          console.log("this.envioUsuarioIdService.selecionUsuarioId: " + this.envioUsuarioIdService.selecionUsuarioId);
+          // console.log("this.envioUsuarioIdService.selecionUsuarioId: " + this.envioUsuarioIdService.selecionUsuarioId);
         }
       })
   }

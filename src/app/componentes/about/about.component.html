@@ -17,12 +17,12 @@
     <!-- <div class=" col-md-3 col-lg-3  divCenter centrado" style="height: 30vh;"> -->
         <div>
             <div class="caja_about_titulo ">
-              <div style="font-family: sans-serif" class="caja_titulo">
-                <p>{{title_a}}</p>
-                <p *ngIf="condicion_title_b">{{title_b}}</p>
-                <p *ngIf="condicion_title_c">{{title_c}}</p>
-                <p>{{persona.edad}}</p>
-                <p style="margin: 0;">{{persona.city}}</p>
+              <div style="font-family: sans-serif;font-weight: 300;" class="caja_titulo">
+                <h3 style="font-size: calc(1rem + .5vw)">{{title_a}}</h3>
+                <h4 style="font-size: calc(1rem + .3vw)" *ngIf="condicion_title_b">{{title_b}}</h4>
+                <h4 style="font-size: calc(1rem + .3vw)" *ngIf="condicion_title_c">{{title_c}}</h4>
+                <h4 style="font-size: calc(1rem + .3vw)">{{persona.edad}}</h4>
+                <h4 style="margin: 0;font-size: calc(1rem + .3vw)">{{persona.city}}</h4>
               </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
           <div class="caja_sobre_mi_vida">
               <h3 class="text-center" style="margin: .5rem 0">{{persona.titleAbout}}</h3>
           </div>
-          <p style="padding:0 1rem;text-align: justify">{{persona.about}}</p>
+          <p style="padding:0 1rem;text-align: justify;font-size: calc(11px + .5vw);font-weight: 300;">{{persona.about}}</p>
         </div>
     <div *ngIf="isLogged" class="div_btn_edit_frase btn_posicion">
 

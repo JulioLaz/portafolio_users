@@ -26,7 +26,7 @@ style="background-image: url(../../../assets/fondo.jpg);  background-size: cover
 
               <form #f="ngForm" (ngSubmit)="onLogin();spinerBtn = false" novalidate>
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="nombreUsuario">Usuario o Email</label>
+                  <label class="form-label" for="nombreUsuario">Email o usuario</label>
                   <input type="text" id="nombreUsuario" class="form-control form-control-lg" name="nombreUsuario"
                     [(ngModel)]="nombreUsuario" required />
                 </div>

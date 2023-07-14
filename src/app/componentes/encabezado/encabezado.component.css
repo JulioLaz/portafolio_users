@@ -170,7 +170,7 @@ nav{
   display: inline-block;
   position: absolute;
   justify-content: center;
-  top: 30vh;
+  top: 20vh;
   width: 80vw;
   border: 1px solid grey;
   border-radius: 10px;
@@ -203,7 +203,7 @@ nav{
           display: inline-block;
           position: absolute;
           justify-content: center;
-          top: 30vh;
+          top: 20vh;
           left: 25vw;
           width: 50vw;
           border: 1px solid grey;
@@ -256,3 +256,16 @@ margin:1rem;align-items: center;
   background-color: rgba(160, 200, 218, 0.3);
   z-index: 1000;
 }
+
+.box_video{
+  display: inline-block;
+  position: absolute;
+  justify-content: center;
+  top: 50vh;
+  left: 25vw;
+  width: 40vw;
+  border: 1px solid grey;
+  border-radius: 10px;
+  background-color: rgba(10, 10, 10, .8);
+  height: auto;
+ }

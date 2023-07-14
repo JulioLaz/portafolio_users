@@ -37,7 +37,7 @@ export class EditHardSoftSkillComponent implements OnInit {
       const id = this.activatedRouter.snapshot.params['id'];
       this.sHardSSkillsService.update(id, this.hardsskills).subscribe({
        next:()=>{
-        console.log("hardsskills editada: "+this.hardsskills.nombre ),
+        // console.log("hardsskills editada: "+this.hardsskills.nombre ),
        Swal.fire({
         position: 'center',
         icon: 'success',

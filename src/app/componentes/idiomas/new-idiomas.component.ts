@@ -50,7 +50,7 @@ export class NewIdiomasComponent implements OnInit {
           this.router.navigate([''])
       },
       error: (e) => {
-        console.log("Falló"),
+        // console.log("Falló"),
         Swal.fire({
           icon: 'error',
           title: 'Oops...',

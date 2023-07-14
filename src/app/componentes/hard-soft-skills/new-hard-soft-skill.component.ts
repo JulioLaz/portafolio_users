@@ -33,10 +33,10 @@ export class NewHardSoftSkillComponent implements OnInit {
   }
 
   onCreate(): void {
-       const skill = new Hardsskills(this.nombre, this.porcentaje, this.imgURL,this.usuarioId);
+    const skill = new Hardsskills(this.nombre, this.porcentaje, this.imgURL,this.usuarioId);
     this.sHardSSkillsService.save(skill).subscribe({
       next: () => {
-        console.log("skill añadida"),
+        // console.log("skill añadida"),
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -47,7 +47,7 @@ export class NewHardSoftSkillComponent implements OnInit {
           this.router.navigate([''])
       },
       error: (e: string) => {
-        console.log("Falló"),
+        // console.log("Falló"),
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

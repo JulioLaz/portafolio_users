@@ -63,7 +63,7 @@ export class ChangePasswordComponent implements OnInit {
     this.dto = new ChangePasswordDTO(this.password,this.confirmPassword,this.tokenPassword);
     this.emailPasswordService.changepassword((this.dto)).subscribe({
       next:(data)=>{
-      console.log(JSON.stringify(data));
+      // console.log(JSON.stringify(data));
        Swal.fire({
          position: 'center',
          icon: 'success',
@@ -76,7 +76,7 @@ export class ChangePasswordComponent implements OnInit {
      error:(err) => {
       this.spinerBtn=true;
 
-       console.log("ERROR "+JSON.stringify(err));
+      //  console.log("ERROR "+JSON.stringify(err));
        Swal.fire({
          position: 'center',
          icon: 'error',
@@ -86,7 +86,7 @@ export class ChangePasswordComponent implements OnInit {
        })
      },
      complete:()=>{
-       console.log("COMPLETE"),
+      //  console.log("COMPLETE"),
        this.router.navigate( ['']);
        setTimeout(() => {location.reload()}, 1000)
      }

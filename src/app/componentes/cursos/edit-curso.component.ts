@@ -95,7 +95,7 @@ this.cargarCursos();
     const id = this.activatedRouter.snapshot.params['id'];
     this.sCursos.update(id, this.cursos).subscribe({
       next: () => {
-        console.log("Curso editado: " + this.cursos.curso),
+        // console.log("Curso editado: " + this.cursos.curso),
           Swal.fire({
             position: 'center',
             icon: 'success',

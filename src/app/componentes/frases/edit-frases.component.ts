@@ -37,12 +37,12 @@ export class EditFrasesComponent implements OnInit {
   ngOnInit(): void {
     this.cargarFrase();
     const id = this.activatedRouter.snapshot.params['id'];
-    console.log("idFrase: " + id)
+    // console.log("idFrase: " + id)
   }
 
   cargarFrase() {
     const id = this.activatedRouter.snapshot.params['id'];
-    console.log("idFrase: " + id)
+    // console.log("idFrase: " + id)
     this.sFrasesService.detail(id).subscribe({
       next:(data)=>{
         this.frases = data;
@@ -56,7 +56,7 @@ export class EditFrasesComponent implements OnInit {
 
   onUpdate() {
     const id = this.activatedRouter.snapshot.params['id'];
-    console.log("idFrase: " + id)
+    // console.log("idFrase: " + id)
 
     this.sFrasesService.update(id, this.frases).subscribe({
       next: () => {

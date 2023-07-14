@@ -24,6 +24,7 @@ import { SProyectosService } from 'src/app/service/s-proyectos.service';
 import { TokenService } from 'src/app/service/token.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-new-usuario',
   templateUrl: './new-usuario.component.html',
@@ -127,6 +128,8 @@ export class NewUsuarioComponent implements OnInit {
     private sCursos: SCursosService,
   ) { }
 
+
+
   ngOnInit(): void {
     this.cargarId();
   }
@@ -137,19 +140,17 @@ export class NewUsuarioComponent implements OnInit {
       {
         next: () => {
           this.onLogin(this.nameUsuario,this.password);
-          console.info('complete user '+usuario),
           this.cargarIdXNombre(this.nombre);
-          // this.router.navigate(['']);
-          // setTimeout(() => {location.reload()}, 1000)
+          // console.log('complete user '+usuario),
 
           Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Usuario creado con EXITO',
             showConfirmButton: false,
-            timer: 1800
+            timer: 1000
           }),
-            this.router.navigate([''])
+          this.router.navigate([])
           },
           error: (err) => {
             this.errMsj = (JSON.stringify(err.error.mensaje)),
@@ -240,8 +241,8 @@ export class NewUsuarioComponent implements OnInit {
 
   newPersona(id: number, nombre: string): void {
     const persona = new Persona(id, nombre, this.apellido, this.img, this.title, this.city, this.edad, this.titleAbout, this.about);
-    console.log(" desde newPersona: nombre: " + this.nombre + " -  id: " + this.id);
-    console.log("Persona: " + JSON.stringify(persona));
+    // console.log(" desde newPersona: nombre: " + this.nombre + " -  id: " + this.id);
+    // console.log("Persona: " + JSON.stringify(persona));
     this.personaService.save(persona).subscribe(
       {
         next: () => { console.log("PERSONA añadida correctamente")},
@@ -255,7 +256,7 @@ export class NewUsuarioComponent implements OnInit {
       data => {
         this.nuevoUsuario = data;
         this.nuevoUsuario.forEach(nuevo => {
-          console.log(" desde cargarid: " + nuevo.nombreUsuario + " -  id: " + nuevo.id);
+          // console.log(" desde cargarid: " + nuevo.nombreUsuario + " -  id: " + nuevo.id);
           if (nuevo.nombreUsuario == this.tokenService.getUserName()) {
             this.id = nuevo.id;
           }
@@ -279,7 +280,7 @@ export class NewUsuarioComponent implements OnInit {
         this.onCreateProyecto();
         this.onCreateCurso();
         // this.router.navigate(['']);
-        setTimeout(() => {location.reload()}, 8000)
+        // setTimeout(() => {location.reload()}, 8000)
       })
   }
 

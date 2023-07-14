@@ -82,7 +82,7 @@ export class EncabezadoComponent implements OnInit {
     } else {
       this.isLoggedDel = false
     }
-    console.log("id usuario: " + this.userId + " isLoggedDel:  " + this.isLoggedDel + " isLogged: " + this.isLogged)
+    // console.log("id usuario: " + this.userId + " isLoggedDel:  " + this.isLoggedDel + " isLogged: " + this.isLogged)
   }
 
   cargarId() {
@@ -91,26 +91,26 @@ export class EncabezadoComponent implements OnInit {
       data => {
         this.nuevoUsuario = data;
         if (!this.tokenservice.getToken()) {
-          console.log("Persona: 1");
+          // console.log("Persona: 1");
           this.cargando_users = true;
 
           this.progressValue = 20;
-          console.log("this.progressValue desde cargarId(): ", this.progressValue)
+          // console.log("this.progressValue desde cargarId(): ", this.progressValue)
           this.cargando_info_user = `Cargando datos de Julio A. Lazarte`;
           return this.userId = 1, this.cargarPersona(1)
         }
         this.nuevoUsuario.forEach(nuevo => {
 
           if (nuevo.nombreUsuario == this.tokenservice.getUserName()) {
-            console.log(" desde if: " + nuevo.nombreUsuario + " -  id: " + nuevo.id);
+            // console.log(" desde if: " + nuevo.nombreUsuario + " -  id: " + nuevo.id);
             this.userId = nuevo.id;
             this.nombre = nuevo.nombre;
             this.habilitarDelUser(this.userId);
             this.cargarPersona(this.userId);
-            console.log('desde encabezado: ', this.nombre)
+            // console.log('desde encabezado: ', this.nombre)
           } else if (this.verSeleccion) {
             this.cargarPersona(this.verSeleccion);
-            console.log("Persona: " + this.verSeleccion);
+            // console.log("Persona: " + this.verSeleccion);
 
           }
         })
@@ -119,24 +119,20 @@ export class EncabezadoComponent implements OnInit {
 
   cargarPersona(id: number): void {
 
-    console.log("this.progressValue desde cargarPersona(): ", this.progressValue)
+    // console.log("this.progressValue desde cargarPersona(): ", this.progressValue)
     this.personaService.detail(id).subscribe((data) => {
       this.persona = data;
       this.progressValue += 30;
-      console.log("this.progressValue desde cargarPersona(): ", this.progressValue)
+      // console.log("this.progressValue desde cargarPersona(): ", this.progressValue)
       this.cargarEmail(id);
-      // return;
     });
-    // this.cargarEmail(id);
-    // return;
     // console.log("Persona: " + JSON.stringify(this.persona))
-
   }
 
   cargarPersonas(): void {
     this.personaService.lista().subscribe((data) => {
       this.personas = data;
-      console.log("Persona: cargatodos los datos. habilitar console para ver todo ");
+      // console.log("Persona: cargatodos los datos. habilitar console para ver todo ");
       // console.log("Persona: " + JSON.stringify(this.personas));
     })
   }
@@ -176,7 +172,7 @@ export class EncabezadoComponent implements OnInit {
     this.cargando_datos = true;
     this.valorPorDefecto = `${nombre} ${apellido}`;
     this.verSeleccion = parseInt(id, 10);
-    console.log("Value: " + this.verSeleccion);
+    // console.log("Value: " + this.verSeleccion);
     this.envioUsuarioIdService.selecionUsuarioId = this.verSeleccion;
     this.envioUsuarioIdService.cargadorUsuarioId.emit({
       data: this.verSeleccion
@@ -195,34 +191,34 @@ export class EncabezadoComponent implements OnInit {
       this.correo_up = true;
       this.redes_up = false
     }
-    console.log("this.progressValue desde onValue_new(): ", this.progressValue)
+    // console.log("this.progressValue desde onValue_new(): ", this.progressValue)
   }
 
   cargarEmail(id: number): void {
-    console.log("this.progressValue desde email(): ", this.progressValue)
-    this.cargando_info_user_mail = `Cargando email`;
+    // console.log("this.progressValue desde email(): ", this.progressValue)
+    this.cargando_info_user_mail = `Cargando componentes`;
     this.progressValue += 0;
-    console.log("this.progressValue desde email(): ", this.progressValue)
+    // console.log("this.progressValue desde email(): ", this.progressValue)
     this.cargando_user_mail = true;
 
     this.authService.getIdUsuario(id).subscribe(
       data => {
         data
-        this.correo = (JSON.parse(JSON.stringify(data))).email;
+        // this.correo = (JSON.parse(JSON.stringify(data))).email;
         this.progressValue += 10;
 
-        console.log("desde cargarEmail: " + this.correo);
+        // console.log("desde cargarEmail: " + this.correo);
 
-        console.log("this.progressValue desde email(): ", this.progressValue)
+        // console.log("this.progressValue desde email(): ", this.progressValue)
         // this.progressValue = 100;
         if (this.valorPorDefecto == 'USUARIO') {
-          // this.cargando_datos = false;
+          this.cargando_datos = true;
           setTimeout(() => {
             let progressValues = this.progressValue;
             const incrementInterval = setInterval(() => {
               progressValues += 10;
               this.progressValue = progressValues;
-              console.log('Incremento:', progressValues);
+              // console.log('Incremento:', progressValues);
 
               if (progressValues >= 100) {
                 clearInterval(incrementInterval);
@@ -230,14 +226,15 @@ export class EncabezadoComponent implements OnInit {
                 this.cargando_user_mail = false;
                 this.cargando_datos = false;
               }
-            }, 3000)}, 8000);
+            }, 10)}, 50);
+            // }, 1000)}, 5000);
         }else{
           setTimeout(() => {
             let progressValues = this.progressValue;
             const incrementInterval = setInterval(() => {
               progressValues += 10;
               this.progressValue = progressValues;
-              console.log('Incremento:', progressValues);
+              // console.log('Incremento:', progressValues);
 
               if (progressValues >= 100) {
                 clearInterval(incrementInterval);
@@ -246,7 +243,8 @@ export class EncabezadoComponent implements OnInit {
                 this.cargando_datos = false;
               }
 
-            }, 200)}, 1000);
+            }, 10)}, 80);
+            // }, 200)}, 1000);
         }
       }
     )

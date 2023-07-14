@@ -41,7 +41,7 @@ export class NewExperienciaComponent implements OnInit {
     const expe = new Experiencia(this.nombreE, this.cargoE, this.descripcionE, this.startE, this.endE, this.cityE, this.usuarioId);
     this.sExperiencia.save(expe).subscribe({
       next: () => {
-        console.log("Experiencia añadida"),
+        // console.log("Experiencia añadida"),
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -52,7 +52,7 @@ export class NewExperienciaComponent implements OnInit {
           this.router.navigate([''])
       },
       error: (e: string) => {
-        console.log("Falló"),
+        // console.log("Falló"),
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

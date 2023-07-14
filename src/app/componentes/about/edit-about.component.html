@@ -1,4 +1,8 @@
-<body style="display: flex;">
+<body>
+  <section class="vh-100"
+  style="background-image: url(../../../assets/fondo.jpg);  background-size: cover;"
+  >
+
   <div class="container" *ngIf="personas"
     style="background-color: lightblue;position: relative;;margin-top: 1rem; width: 60vw;height: 90%;padding: 2.5rem; border:2px solid grey; border-radius: .5rem;">
     <div class="row">
@@ -58,7 +62,7 @@
 
           <div style="display: flex;justify-content: center;margin-bottom: 1rem;">
             <button type="submit" class="btn btn-primary btn-sm" style="width: 100%;" ngClick="Submit">
-              <span *ngIf="spinerBtn"><span style="font-size: 15px;">⬆️</span>Guardar textos</span>
+              <span *ngIf="spinerBtn">Guardar</span>
               <div *ngIf="!spinerBtn">
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 enviando...
@@ -106,4 +110,5 @@
       </div>
     </div>
   </div>
+  </section>
 </body>

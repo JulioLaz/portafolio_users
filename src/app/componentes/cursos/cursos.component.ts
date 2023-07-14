@@ -62,7 +62,7 @@ export class CursosComponent implements OnInit {
       data => {
         data
         this.cursos = JSON.parse(JSON.stringify(data));    //ver
-        console.log('Cursos: ',this.cursos)
+        // console.log('Cursos: ',this.cursos)
       })
   }
 

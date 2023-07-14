@@ -38,7 +38,7 @@ export class EditAboutComponent implements OnInit {
         this.nuevoUsuario = data;
         this.nuevoUsuario.forEach(nuevo => {
           if (nuevo.nombreUsuario == this.tokenService.getUserName()) {
-            console.log(" desde if: " + nuevo.nombreUsuario + " -  id: " + nuevo.id + "this.tokenService.getUserName(): " + this.tokenService.getUserName());
+            // console.log(" desde if: " + nuevo.nombreUsuario + " -  id: " + nuevo.id + "this.tokenService.getUserName(): " + this.tokenService.getUserName());
             this.id = nuevo.id;
             this.cargarPersona();
           }
