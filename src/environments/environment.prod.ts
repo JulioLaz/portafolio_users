@@ -9,7 +9,7 @@ export const environment = {
     messagingSenderId: '854128116448',
   },
   production: true,
-  // URL:'https://curriculumvitae-qw3u.onrender.com/'
-  URL: 'http://localhost:8080/'
+  URL:'https://cv-new.onrender.com/'
+  // URL: 'http://localhost:8080/'
 
 };

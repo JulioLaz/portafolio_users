@@ -42,6 +42,7 @@ export class EncabezadoComponent implements OnInit {
   correo_up: boolean = false;
 
   imagen_user: string = '/assets/julio.png';
+  video_youtube: string = 'https://youtu.be/4NREc264XH4';
 
   constructor(
     private router: Router,

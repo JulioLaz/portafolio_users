@@ -86,6 +86,8 @@ export class PdfComponent implements OnInit {
   email: any;
   emails: any;
   correo: any;
+  video_youtube: string = 'https://youtu.be/4NREc264XH4';
+  cv_web:string='https://cv-lazarte-julio.web.app'
   /////////////
 
   constructor(
@@ -304,7 +306,8 @@ export class PdfComponent implements OnInit {
                       },
                       {
                         text: 'Ver Curriculum Web',
-                        link: `https://julio-lazarte-cv.web.app`,
+                        link: this.cv_web,
+                        // link: `https://julio-lazarte-cv.web.app`,
                         style: {
                           decoration: 'underline',
                           color: '#2780E3',
@@ -658,8 +661,18 @@ export class PdfComponent implements OnInit {
             ],
           },
           {
-            text: 'Curriculum Vitae generado desde mi Portfolio Web',
-            link: 'https://portfolio-julio-lazarte.web.app',
+            text: 'Curriculum Vitae',
+            link: this.cv_web,
+            fontSize: 10,
+            alignment: 'center',
+            margin: [5, 0, 0, 0],
+            decoration: 'underline',
+            color: '#154360',
+            target: '_blank',
+          },
+          {
+            text: 'Video tutorial app curriculum web',
+            link: this.video_youtube,
             fontSize: 10,
             alignment: 'center',
             margin: [5, 0, 0, 0],

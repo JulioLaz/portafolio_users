@@ -9,6 +9,8 @@ import { Location } from '@angular/common';
 })
 export class DropdownsHeaderComponent implements OnInit {
 
+  video_youtube: string = 'https://youtu.be/4NREc264XH4';
+
   constructor(
     private router:Router,
     public location:Location
@@ -16,7 +18,7 @@ export class DropdownsHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   modal_up(): void {
     this.router.navigateByUrl('/modal');
   }
