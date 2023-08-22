@@ -306,8 +306,7 @@ export class PdfComponent implements OnInit {
                       },
                       {
                         text: 'Ver Curriculum Web',
-                        link: this.cv_web,
-                        // link: `https://julio-lazarte-cv.web.app`,
+                        link: 'https://cv-lazarte-julio.web.app',
                         style: {
                           decoration: 'underline',
                           color: '#2780E3',
@@ -661,8 +660,8 @@ export class PdfComponent implements OnInit {
             ],
           },
           {
-            text: 'Curriculum Vitae',
-            link: this.cv_web,
+            text: 'Curriculum Vitae generado desde Portfolio Web (Front/back/DDBB)',
+            link: `https://julio-lazarte-cv.web.app`,
             fontSize: 10,
             alignment: 'center',
             margin: [5, 0, 0, 0],
